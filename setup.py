@@ -99,7 +99,7 @@ setup(
     package_data={
         "": data_files,
     },
-    python_requires=">=3.6.0",
+    python_requires=">=3.10.0",
     install_requires=[
         "pynq",
         "matplotlib",

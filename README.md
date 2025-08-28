@@ -16,7 +16,7 @@ Open a terminal on your PYNQ board and run:
 sudo pip3 install pynq-helloworld --no-build-isolation
 ```
 
-Currently this repository is compatible with `pynq` package v2.7.0.
+Currently this repository is compatible with `pynq` package v3.1.
 
 Go to your jupyter home folder (on edge boards, this is
 `/home/xilinx/jupyter_notebooks`), and run the following to deliver the notebooks:
@@ -33,7 +33,7 @@ able to try the notebooks!
 Currently this repository is supporting:
 
 * **Zynq-7000 boards**: Pynq-Z1, Pynq-Z2, etc.
-* **Zynq Ultrascale boards**: KV260, Pynq-ZU, Ultra96, ZCU104, etc.
+* **Zynq Ultrascale boards**: AUP-ZU3, KV260, Pynq-ZU, Ultra96, ZCU104, etc.
 * **PCIE Alveo cards**: U50, U55C, U200, U250, U280.
 * **AWS F1 instance**: VU9P.
 
