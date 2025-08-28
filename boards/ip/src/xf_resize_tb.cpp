@@ -15,7 +15,7 @@
  */
 
 #include "common/xf_headers.hpp"
-#include "xf_resize_config.h"
+#include "xf_resize_accel_config.h"
 
 #include "xcl2.hpp"
 

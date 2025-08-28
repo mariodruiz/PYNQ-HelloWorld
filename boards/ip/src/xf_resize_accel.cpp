@@ -45,7 +45,7 @@ void resizer(ap_uint<INPUT_PTR_WIDTH>* src, ap_uint<OUTPUT_PTR_WIDTH>* dst,
     #pragma HLS stream variable=dst_mat.data depth=2
     #pragma HLS DATAFLOW
     xf::cv::Array2xfMat<INPUT_PTR_WIDTH, IN_TYPE, HEIGHT, WIDTH, NPPCX>(src, src_mat);
-    xf::cv::resize<INTERPOLATION, IN_TYPE, HEIGHT, WIDTH, NEWHEIGHT, NEWWIDTH, NPPCX, XF_USE_URAM, MAXDOWNSCALE, XF_CV_DEPTH_IN, XF_CV_DEPTH_OUT>(in_mat, out_mat);
+    xf::cv::resize<INTERPOLATION, IN_TYPE, HEIGHT, WIDTH, NEWHEIGHT, NEWWIDTH, NPPCX, XF_USE_URAM, MAXDOWNSCALE, XF_CV_DEPTH_IN, XF_CV_DEPTH_OUT>(src_mat, dst_mat);
     xf::cv::xfMat2Array<OUTPUT_PTR_WIDTH, IN_TYPE, NEWHEIGHT, NEWWIDTH, NPPCX>(dst_mat, dst);
 }
 }
