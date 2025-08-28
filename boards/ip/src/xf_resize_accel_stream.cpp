@@ -17,6 +17,9 @@
 #define TYPE XF_8UC3
 #define INTERPOLATION XF_INTERPOLATION_BILINEAR
 #define MAXDOWNSCALE 9
+#define XF_CV_DEPTH_IN 2
+#define XF_CV_DEPTH_OUT 2
+#define XF_USE_URAM 0
 
 typedef ap_axiu<DATA_WIDTH,1,1,1> interface_t;
 typedef hls::stream<interface_t> stream_t;
@@ -111,7 +114,7 @@ void resize_accel(stream_t& src, stream_t& dst,
     // Convert stream to xf::cv::Mat
     axis2xfMat<DATA_WIDTH, TYPE, HEIGHT, WIDTH, NPIX>(src, src_mat);
     // Run xfOpenCV kernel:
-    xf::cv::resize<INTERPOLATION, TYPE, HEIGHT, WIDTH, HEIGHT, WIDTH, NPIX, MAXDOWNSCALE>(src_mat, dst_mat);
+    xf::cv::resize<INTERPOLATION, TYPE, HEIGHT, WIDTH, NEWHEIGHT, NEWWIDTH, NPIX, XF_USE_URAM, MAXDOWNSCALE, XF_CV_DEPTH_IN, XF_CV_DEPTH_OUT>(in_mat, out_mat);
     // Convert xf::cv::Mat to stream
     xfMat2axis<DATA_WIDTH, TYPE, HEIGHT, WIDTH, NPIX>(dst_mat, dst);
 
