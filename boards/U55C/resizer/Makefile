@@ -8,7 +8,7 @@ RMDIR = rm -rf
 TARGET := hw
 
 # update VITIS_PLATFORM based on your system
-VITIS_PLATFORM = /proj/xbuilds/2022.1_released/internal_platforms/$(PLATFORM)/$(PLATFORM).xpfm
+VITIS_PLATFORM = /proj/xbuilds/2024.1_released/internal_platforms/$(PLATFORM)/$(PLATFORM).xpfm
 VPP_OPTS = -t ${TARGET} --platform ${VITIS_PLATFORM} \
 	--save-temps --config ${CUR_DIR}/config.cfg
 XO_BUILD_PATH = ../../ip/vitis_lib/vision/L2/tests/resize/resize_DOWN_BILINEAR_NO_RGB
