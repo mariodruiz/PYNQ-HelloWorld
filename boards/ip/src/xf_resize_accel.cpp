@@ -27,7 +27,7 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ***************************************************************************/
-#include "xf_resize_config.h"
+#include "xf_resize_accel_config.h"
 
 extern "C" {
 void resizer(ap_uint<INPUT_PTR_WIDTH>* src, ap_uint<OUTPUT_PTR_WIDTH>* dst,
@@ -39,13 +39,13 @@ void resizer(ap_uint<INPUT_PTR_WIDTH>* src, ap_uint<OUTPUT_PTR_WIDTH>* dst,
     #pragma HLS INTERFACE s_axilite port=dst_rows              
     #pragma HLS INTERFACE s_axilite port=dst_cols              
     #pragma HLS INTERFACE s_axilite port=return
-    xf::cv::Mat<TYPE, HEIGHT, WIDTH, NPC_T> src_mat(src_rows, src_cols);
+    xf::cv::Mat<IN_TYPE, HEIGHT, WIDTH, NPPCX> src_mat(src_rows, src_cols);
     #pragma HLS stream variable=src_mat.data depth=2
-    xf::cv::Mat<TYPE, NEWHEIGHT, NEWWIDTH, NPC_T> dst_mat(dst_rows, dst_cols);
+    xf::cv::Mat<IN_TYPE, NEWHEIGHT, NEWWIDTH, NPPCX> dst_mat(dst_rows, dst_cols);
     #pragma HLS stream variable=dst_mat.data depth=2
     #pragma HLS DATAFLOW
-    xf::cv::Array2xfMat<INPUT_PTR_WIDTH, TYPE, HEIGHT, WIDTH, NPC_T>(src, src_mat);
-    xf::cv::resize<INTERPOLATION, TYPE, HEIGHT, WIDTH, NEWHEIGHT, NEWWIDTH, NPC_T, MAXDOWNSCALE>(src_mat, dst_mat);
-    xf::cv::xfMat2Array<OUTPUT_PTR_WIDTH, TYPE, NEWHEIGHT, NEWWIDTH, NPC_T>(dst_mat, dst);
+    xf::cv::Array2xfMat<INPUT_PTR_WIDTH, IN_TYPE, HEIGHT, WIDTH, NPPCX>(src, src_mat);
+    xf::cv::resize<INTERPOLATION, IN_TYPE, HEIGHT, WIDTH, NEWHEIGHT, NEWWIDTH, NPPCX, XF_USE_URAM, MAXDOWNSCALE, XF_CV_DEPTH_IN, XF_CV_DEPTH_OUT>(in_mat, out_mat);
+    xf::cv::xfMat2Array<OUTPUT_PTR_WIDTH, IN_TYPE, NEWHEIGHT, NEWWIDTH, NPPCX>(dst_mat, dst);
 }
 }
