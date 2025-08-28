@@ -1,1 +1,0 @@
-../../Pynq-Z2/resizer/build_bitstream.tcl
